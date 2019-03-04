@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.series.entities;
 
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -15,6 +18,10 @@ import javax.persistence.Entity;
 public class SerieEntity extends BaseEntity {
     private String name;
     private String description;
+    
+    @PodamExclude
+    @OneToMany
+    private List<PersonajeEntity> personajes;
     
     public SerieEntity(){
     
@@ -45,6 +52,20 @@ public class SerieEntity extends BaseEntity {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the personajes
+     */
+    public List<PersonajeEntity> getPersonajes() {
+        return personajes;
+    }
+
+    /**
+     * @param personajes the personajes to set
+     */
+    public void setPersonajes(List<PersonajeEntity> personajes) {
+        this.personajes = personajes;
     }
     
     
