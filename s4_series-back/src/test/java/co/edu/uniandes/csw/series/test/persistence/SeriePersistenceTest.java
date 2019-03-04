@@ -57,4 +57,15 @@ public class SeriePersistenceTest {
         //TODO agregar protagonistas, persistirlos y validar si se están relacionando correctamente
          
     }
+    
+    @Test
+    public void deleteSerieTest(){
+        PodamFactory factory = new PodamFactoryImpl();
+        SerieEntity newEntity = factory.manufacturePojo(SerieEntity.class);
+        SerieEntity result = seriePersistence.create(newEntity);
+        Long id = result.getId();
+        seriePersistence.delete(id);
+        SerieEntity delResult = em.find(SerieEntity.class, id);
+        Assert.assertNull(delResult);
+    }
 }

@@ -53,4 +53,9 @@ public class SeriePersistence {
         em.persist(entity);
         return entity;
     }
+    
+    public void delete(Long Serieid){
+        SerieEntity entity = em.find(SerieEntity.class, Serieid);
+        em.remove(entity);
+    }
 }
