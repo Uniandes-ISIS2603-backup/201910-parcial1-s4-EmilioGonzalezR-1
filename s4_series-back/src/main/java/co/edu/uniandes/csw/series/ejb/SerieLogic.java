@@ -27,6 +27,14 @@ public class SerieLogic {
     //TODO modificar el método createHeroe
   
     public SerieEntity createSerie(SerieEntity entity) throws BusinessLogicException{
+        SerieEntity refEntity = persistence.findByName(entity.getName());
+        if(refEntity != null){
+            throw new BusinessLogicException("La serie con nombre " + entity.getName() + " ya existe.");
+        }
+        if(entity.getDescription().length() <= 30){
+            throw new BusinessLogicException("La serie " + entity.getName() 
+                    + "tiene una descipciòn de menos de 30 caracteres");
+        }
         return persistence.create(entity);
     }
     
