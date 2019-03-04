@@ -18,6 +18,7 @@ public class PersonajeEntity extends BaseEntity implements Serializable {
     private String name;
     
     private String portrayedBy;
+
     
     public PersonajeEntity(){
         

@@ -5,7 +5,9 @@
  */
 package co.edu.uniandes.csw.series.entities;
 
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -15,12 +17,12 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author Jose Bocanegra
  */
 @Entity
-public class SerieEntity extends BaseEntity {
+public class SerieEntity extends BaseEntity implements Serializable{
     private String name;
     private String description;
     
     @PodamExclude
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<PersonajeEntity> personajes;
     
     public SerieEntity(){
