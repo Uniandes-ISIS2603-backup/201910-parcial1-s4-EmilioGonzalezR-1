@@ -5,9 +5,11 @@
  */
 package co.edu.uniandes.csw.series.ejb;
 
+import co.edu.uniandes.csw.series.entities.PersonajeEntity;
 import co.edu.uniandes.csw.series.entities.SerieEntity;
 import co.edu.uniandes.csw.series.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.series.persistence.SeriePersistence;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -37,5 +39,15 @@ public class SerieLogic {
         }
         return persistence.create(entity);
     }
+    
+    public void deleteSerie(SerieEntity entity) throws BusinessLogicException{
+        List<PersonajeEntity> personajes = entity.getPersonajes();
+        if(personajes.isEmpty()){
+            throw new BusinessLogicException("La serie " + entity.getName() + " debe tener personajes para ser eliminada.");
+        }
+        persistence.delete(entity.getId());
+    }
+    
+    
     
 }

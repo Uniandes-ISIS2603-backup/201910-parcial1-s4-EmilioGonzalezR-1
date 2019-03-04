@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.series.exceptions.BusinessLogicException;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -49,4 +50,13 @@ public class SerieResource {
         return new SerieDetailDTO(serie); 
     }
     
+    @DELETE
+    @Path("{id: \\d+}")
+    public void deleteSerie(@PathParam("id") Long id) throws BusinessLogicException{
+        SerieEntity serie = serieLogic.getSerie(id);
+        if (serie == null){
+            throw new WebApplicationException("La serie no existe");
+        }
+        serieLogic.deleteSerie(serie);
+    }
 }
